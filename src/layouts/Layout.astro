@@ -1,0 +1,81 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<script>
+			// Asegúrate de que el DOM esté completamente cargado
+			document.addEventListener('DOMContentLoaded', () => {
+				// Crear el div y agregar la clase custom-cursor
+				const cursor = document.createElement('div');
+				cursor.classList.add('cursor');
+				//cursor.classList.add('hidden');
+				document.body.appendChild(cursor);
+
+				// Agregar el listener para el evento mousemove
+				document.addEventListener('mousemove', (event) => {
+					//cursor.classList.remove('hidden');
+					cursor.style.left = `${event.clientX}px`;
+					cursor.style.top = `${event.clientY}px`;
+				});
+        	});
+        </script>
+	</head>
+	<body class="section pb-16 md:pb-36 scroll-m-20 w-full mx-auto container lg:max-w-4xl md:max-w-2xl px-2 sm:px-0" id="inicio">
+		<Header />
+		<slot />
+		<Footer />
+	</body>
+</html>
+<style is:global>
+
+	@font-face {
+		font-family: 'Onest';
+		src: url('/fonts/Onest-VariableFont_wght.ttf') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+	html {
+		font-family: 'Onest',system-ui,sans-serif;
+		display: flex;
+		justify-content: center;
+		background-color: #0c1a2a;
+		opacity: 1;
+		background-image: radial-gradient(circle at center center, #0035ff, #0c1a2a), repeating-radial-gradient(circle at center center, #0035ff, #0035ff, 40px, transparent 80px, transparent 40px);
+		background-blend-mode: multiply;
+		scroll-behavior: smooth;
+
+
+	}
+
+	body{
+		max-width: 600px;
+	}
+
+	.cursor {
+		position: fixed;
+		width: 0px;
+		height: 0px;
+		background: rgba(99 102 241, 0.2);
+		border-radius: 50%;
+		pointer-events: none;
+		box-shadow: 0 0 100px 50px rgba(154, 233, 247, 0.15);
+		transform: translate(-50%, -50%);
+		transition: transform 0.1s ease;
+		z-index: 99;	
+	}
+</style>
