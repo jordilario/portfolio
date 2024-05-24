@@ -41,6 +41,46 @@ const { title } = Astro.props;
 		<Footer />
 	</body>
 </html>
+
+<script>
+	 window.onload = function() {
+            // Selecciona todos los elementos con la clase .element-visible
+            const elementos = document.querySelectorAll('.element-visible');
+
+            // Define la función que se ejecutará cuando un elemento entre o salga de la vista
+            const callback = (entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Puedes añadir alguna acción aquí, como añadir una clase o cambiar el estilo
+						setTimeout(() => {
+							entry.target.classList.add('showSlowly');
+						}, 200*index);
+                        
+                    } else {
+                        console.log('Elemento no visible:', entry.target);
+                        // Puedes añadir alguna acción aquí, como quitar una clase o cambiar el estilo
+                        entry.target.classList.remove('showSlowly');
+                    }
+                });
+            };
+
+            // Configuración opcional para el observer
+            const options = {
+                root: null, // Observa con respecto a la ventana de visualización
+                rootMargin: '0px', // Margen alrededor del root
+                threshold: 0.1 // Porcentaje del elemento visible antes de activar el callback (0.1 significa 10%)
+            };
+
+            // Crea un Intersection Observer con el callback y las opciones
+            const observer = new IntersectionObserver(callback, options);
+
+            // Comienza a observar cada uno de los elementos seleccionados
+            elementos.forEach(elemento => {
+                observer.observe(elemento);
+            });
+        };
+</script>
+
 <style is:global>
 
 	@font-face {
@@ -77,5 +117,22 @@ const { title } = Astro.props;
 		transform: translate(-50%, -50%);
 		transition: transform 0.1s ease;
 		z-index: 99;	
+	}
+
+	@keyframes slideOpacity {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .showSlowly{
+        animation: slideOpacity 1s ease-out forwards;
+    }
+
+	.element-visible{
+		opacity: 0;
 	}
 </style>
