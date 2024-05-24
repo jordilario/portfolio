@@ -48,9 +48,12 @@ const { title } = Astro.props;
             // Selecciona todos los elementos con la clase .element-visible
             const elementos = document.querySelectorAll('.element-visible');
 
+			interface Observer {
+				observe: (element: Element) => void;
+			}
             // Define la función que se ejecutará cuando un elemento entre o salga de la vista
-            const callback = (entries, observer) => {
-                entries.forEach((entry, index) => {
+            const callback = (entries: IntersectionObserverEntry[], observer: Observer) => {
+                entries.forEach((entry: IntersectionObserverEntry, index: number) => {
                     if (entry.isIntersecting) {
                         // Puedes añadir alguna acción aquí, como añadir una clase o cambiar el estilo
 						setTimeout(() => {
@@ -73,7 +76,7 @@ const { title } = Astro.props;
             };
 
             // Crea un Intersection Observer con el callback y las opciones
-            const observer = new IntersectionObserver(callback, options);
+			const observer = new IntersectionObserver(callback as IntersectionObserverCallback, options);
 
             // Comienza a observar cada uno de los elementos seleccionados
             elementos.forEach(elemento => {
