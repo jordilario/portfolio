@@ -35,8 +35,23 @@
                 <div class="flex flex-col w-full justify-center gap-4 element-visible ">
                     <a href="/" class="flex justify-center transition hover:scale-105"><img class="w-60 h-60 rounded-full" src="/img/profile.jpg" alt="Logo Jordi Segura Lario"></a>
                     <div class="flex items-center justify-center" >
-                        <span class="badge flex items-center transition bg-indigo-500 border border-transparent p-2 rounded-full text-white cursor-pointer h-12 hover:text-indigo-500 hover:bg-transparent hover:border hover:border-indigo-500 ">
-                            Desarrollador de software full-stack
+                        <span class="download_cv gap-2 badge flex items-center transition bg-indigo-500 border border-transparent px-4 py-2 rounded-full text-white cursor-pointer h-12 hover:text-indigo-500 hover:bg-transparent hover:border hover:border-indigo-500 ">
+                            <span>
+                                Descargar CV
+                            </span>
+                            <svg fill="#fff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                            width="20" height="20" viewBox="0 0 43.916 43.916"
+                            xml:space="preserve">
+                                <g>
+                                    <path d="M34.395,0H9.522c-2.762,0-5,2.239-5,5v33.916c0,2.761,2.238,5,5,5h24.871c2.762,0,5-2.239,5-5V5
+                                        C39.395,2.239,37.154,0,34.395,0z M9.208,16.855c0-1.172,0.951-2.121,2.121-2.121h0.742c-0.791-0.874-1.277-2.03-1.277-3.304
+                                        c0-2.723,2.209-4.931,4.932-4.931c2.725,0,4.932,2.207,4.932,4.932c0,1.272-0.486,2.429-1.279,3.303h0.709
+                                        c1.172,0,2.121,0.949,2.121,2.121v3.578c0,1.122-0.875,2.03-1.975,2.106h-9.051c-1.1-0.076-1.975-0.984-1.975-2.106V16.855
+                                        L9.208,16.855z M32.708,37.416h-21.5c-1.104,0-2-0.896-2-2s0.896-2,2-2h21.5c1.104,0,2,0.896,2,2S33.812,37.416,32.708,37.416z
+                                            M32.708,29.916h-21.5c-1.104,0-2-0.896-2-2s0.896-2,2-2h21.5c1.104,0,2,0.896,2,2S33.812,29.916,32.708,29.916z M32.708,22.416
+                                        h-6.5c-1.104,0-2-0.896-2-2c0-1.104,0.896-2,2-2h6.5c1.104,0,2,0.896,2,2C34.708,21.52,33.812,22.416,32.708,22.416z"/>
+                                </g>
+                            </svg>
                         </span>
                     </div>
                 </div>
@@ -174,6 +189,13 @@
 
             menu.addEventListener('click', function() {
                 menu.style.transform = 'scale(0)';
+            });
+        }
+
+        const downloadCV = document.querySelector('.download_cv');
+        if(downloadCV){
+            downloadCV.addEventListener('click', function() {
+                window.open('/cv/Jordi_Segura_Lario_CV.pdf', '_blank');
             });
         }
 
