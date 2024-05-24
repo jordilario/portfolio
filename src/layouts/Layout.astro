@@ -20,19 +20,17 @@ const { title } = Astro.props;
 		<script>
 			// Asegúrate de que el DOM esté completamente cargado
 			document.addEventListener('DOMContentLoaded', () => {
-				// Crear el div y agregar la clase custom-cursor
 				const cursor = document.createElement('div');
 				cursor.classList.add('cursor');
-				//cursor.classList.add('hidden');
 				document.body.appendChild(cursor);
 
-				// Agregar el listener para el evento mousemove
-				document.addEventListener('mousemove', (event) => {
-					//cursor.classList.remove('hidden');
+				document.addEventListener('mousemove', updateCursorPosition);
+
+				function updateCursorPosition(event: MouseEvent) {
 					cursor.style.left = `${event.clientX}px`;
 					cursor.style.top = `${event.clientY}px`;
-				});
-        	});
+				}
+			});
         </script>
 	</head>
 	<body class="section pb-16 md:pb-36 scroll-m-20 w-full mx-auto container lg:max-w-4xl md:max-w-2xl px-2 sm:px-0" id="inicio">
@@ -120,7 +118,7 @@ const { title } = Astro.props;
 		box-shadow: 0 0 100px 50px rgba(154, 233, 247, 0.15);
 		transform: translate(-50%, -50%);
 		transition: transform 0.1s ease;
-		z-index: 99;	
+		z-index: 999999;	
 	}
 
 	@keyframes slideOpacity {
