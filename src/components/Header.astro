@@ -1,12 +1,12 @@
 
 <header >
-    <div class="header-movement element-visible">
-        <nav class="w-fit rounded-full pl-4 pr-4 transition"  id="header">
+    <div class="header-movement ">
+        <nav class="w-fit rounded-full pl-4 pr-4 transition element-visible"  id="header">
             <ul class=" hidden sm:flex justify-center items-end space-x-6">
-                <li><a class="relative block px-2 py-2 transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold" aria-label="inicio" href="#inicio"> Inicio </a></li>
-                <li><a class="relative block px-2 py-2 transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold" aria-label="experiencia" href="#experiencia"> Experiencia </a></li>
-                <li><a class="relative block px-2 py-2 transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold" aria-label="proyectos" href="#proyectos"> Proyectos </a></li>
-                <li><a class="relative block px-2 py-2 transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold" aria-label="sobreMi" href="#sobreMi"> Sobre mi </a></li>
+                <li><a class="relative block px-2 py-2 transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold" aria-label="inicio" id="inicio-link" href="#inicio"> Inicio </a></li>
+                <li><a class="relative block px-2 py-2 transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold" aria-label="experiencia" id="experiencia-link" href="#experiencia"> Experiencia </a></li>
+                <li><a class="relative block px-2 py-2 transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold" aria-label="proyectos" id="proyectos-link" href="#proyectos"> Proyectos </a></li>
+                <li><a class="relative block px-2 py-2 transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold" aria-label="sobreMi" id="sobremi-link" href="#sobreMi"> Sobre mi </a></li>
                 <li><a class="relative block px-2 py-2 transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold" aria-label="contacto" href="mailto:jordiseguralario@gmail.com"> Contacto </a></li>
             </ul>
             <ul class="flex sm:hidden justify-center items-end space-x-6">
@@ -17,13 +17,13 @@
             </ul>
         </nav>
 
-        <div id="menu" class=" rounded-xl fixed inset-0 bg-black backdrop-blur-xl bg-opacity-50 flex justify-center items-center transform scale-0 transition-transform duration-200 ease-in-out">
+        <div id="menu" class=" rounded-xl fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center transform scale-0 transition-transform duration-200 ease-in-out backdrop-blur-xl ">
             <div class="bg-transparent rounded-lg p-8">
                 <ul>
-                    <li class="text-3xl p-5 flex justify-center transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold"><a href="#inicio">Inicio</a></li>
-                    <li class="text-3xl p-5 flex justify-center transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold"><a href="#experiencia">Experiencia</a></li>
-                    <li class="text-3xl p-5 flex justify-center transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold"><a href="#proyectos">Proyectos</a></li>
-                    <li class="text-3xl p-5 flex justify-center transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold"><a href="#sobreMi">Sobre mi</a></li>
+                    <li class="text-3xl p-5 flex justify-center transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold"><a id="inicio-link-collapsed" href="#inicio">Inicio</a></li>
+                    <li class="text-3xl p-5 flex justify-center transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold"><a id="experiencia-link-collapsed" href="#experiencia">Experiencia</a></li>
+                    <li class="text-3xl p-5 flex justify-center transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold"><a id="proyectos-link-collapsed" href="#proyectos">Proyectos</a></li>
+                    <li class="text-3xl p-5 flex justify-center transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold"><a id="sobremi-link-collapsed" href="#sobreMi">Sobre mi</a></li>
                     <li class="text-3xl p-5 flex justify-center transition hover:text-indigo-200 dark:hover:text-indigo-400 text-white font-medium hover:font-bold"><a href="mailto:jordiseguralario@gmail.com">Contacto</a></li>
                 </ul>
             </div>
@@ -101,10 +101,15 @@
                 const projectsSection = document.getElementById('proyectos');
                 const aboutSection = document.getElementById('sobreMi');
                 
-                const experienceLink = document.querySelector('a[href="#experiencia"]');
-                const projectsLink = document.querySelector('a[href="#proyectos"]');
-                const aboutLink = document.querySelector('a[href="#sobreMi"]');
-                const homeLink = document.querySelector('a[href="#inicio"]');
+                const experienceLink = document.getElementById('experiencia-link');
+                const projectsLink = document.getElementById('proyectos-link');
+                const aboutLink = document.getElementById('sobremi-link');
+                const homeLink = document.getElementById('inicio-link');
+
+                const experienceLinkCollapsed = document.getElementById('experiencia-link-collapsed');
+                const projectsLinkCollapsed = document.getElementById('proyectos-link-collapsed');
+                const aboutLinkCollapsed = document.getElementById('sobremi-link-collapsed');
+                const homeLinkCollapsed = document.getElementById('inicio-link-collapsed');
 
                 const experienceTop = experienceSection?.offsetTop;
                 const projectsTop = projectsSection?.offsetTop;
@@ -117,26 +122,34 @@
 
                     if (scrollPosition < experienceTop) {
                         homeLink?.classList.add('active');
+                        homeLinkCollapsed?.classList.add('active');
                     }else{
                         homeLink?.classList.remove('active');
+                        homeLinkCollapsed?.classList.remove('active');
                     }
 
                     if (scrollPosition >= experienceTop && scrollPosition < projectsTop) {
                         experienceLink?.classList.add('active');
+                        experienceLinkCollapsed?.classList.add('active');
                     } else {
                         experienceLink?.classList.remove('active');
+                        experienceLinkCollapsed?.classList.remove('active');    
                     } 
 
                     if (scrollPosition >= projectsTop && scrollPosition < aboutTop) {
                         projectsLink?.classList.add('active');
+                        projectsLinkCollapsed?.classList.add('active');
                     } else {
                         projectsLink?.classList.remove('active');
+                        projectsLinkCollapsed?.classList.remove('active');  
                     } 
                     
                     if (scrollPosition >= aboutTop) {
                         aboutLink?.classList.add('active');
+                        aboutLinkCollapsed?.classList.add('active');
                     } else {
                         aboutLink?.classList.remove('active');
+                        aboutLinkCollapsed?.classList.remove('active'); 
                     }  
 
 
@@ -189,7 +202,8 @@
     }
 
     .active{
-        color: #3730a3;
+        color: #4f46e5;
+        text-decoration: underline;
         font-weight: bold;
     }
 
@@ -197,5 +211,16 @@
         cursor: pointer;
     }
 
+    @keyframes slideInFromLeft {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
 
+    .moveToRigth{
+        animation: slideInFromLeft 1s ease-out forwards;
+    }
 </style>
